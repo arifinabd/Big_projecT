@@ -1,0 +1,224 @@
+body {
+    margin: 0;
+}
+.cover{
+    margin: 0 auto;
+    width: 100%;
+}
+.halaman3{
+    // padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+    /* -----------untuk konten----------- */
+.contain_halaman3{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+        /* -------konten menu sebelah kiri----------------- */
+.conhal3_1{
+    border-left: solid 1px #E7F0F2;
+    height: 180px;
+    /* border: solid 1px black; */
+    /* box-sizing: border-box; */
+    margin-top: 240px;
+}
+.conhal3_1 p{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    width: 100px;
+    margin-top: 0;
+    margin-left: 10px;
+}
+.conhal3_1 p.aktif:hover{
+    font-weight: 900;
+}
+/* p .aktif{
+    font-weight: 900;
+} */
+            
+        /* -------konten menu tengah------------- */
+.conhal3_2{
+    /* border: solid 1px black; */
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 700px;
+    /* margin-left: 150px;
+    margin-right: 150px; */
+}
+.conhal3_2child{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 173px;
+    height: 116px;
+    background-color: rgba(231, 240, 242, 0.3);
+    margin: 5px;
+    margin-right: 35px;
+    margin-bottom: 25px;
+}
+.conhal3_2child:hover{
+    width: 183px;
+    height: 126px;
+    background-color: rgba(69, 71, 72, 0.3);
+
+}
+.conhal3_2child1{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 20px;
+}
+.conhal3_2child2{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 10px;
+    line-height: 16px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+        /* ------konten menu sebelah kanan------------- */
+.conhal3_3{
+    border-right: solid 1px #E7F0F2;
+    height: 180px;
+    /* border: solid 1px black; */
+    /* box-sizing: border-box; */
+    /* width: 100px; */
+}
+.conhal3_3 p{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    width: 100px;
+    text-align: right;
+    margin-top: 0;
+    margin-right: 10px;
+}
+.conhal3_3 p.aktif:hover{
+    font-weight: 900;
+}
+    
+/* -------------menu nomer------------------- */
+.number_bar{
+    display: flex;
+    align-items: flex-end;
+    /* text-align: center; */
+    justify-content: center;
+    margin-left: 30px;
+    /* margin-left: 50%;
+    margin-right: 50%; */
+    margin: 20px auto;
+    border-top: solid 1px #E7F0F2;
+    width: 400px;       
+}   
+.number_bar p{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 20px;
+    color: #E7F0F2;
+    margin-bottom: 20px;
+}
+.number_bar p.aktif:hover{
+    /* margin-right: 13px; */
+    color: black;
+}
+
+/* -----------footer-------------------- */
+.footer{
+    margin-top: 30px;
+}
+/* .footer3{
+    border-top: solid 1px #C4C4C4;
+    text-align: center;
+    
+}
+    .footer3 img{
+        margin-top: 10px;
+    } */
+
+
+
+
+
+    
+@media only screen and (max-width: 868px){
+    .container{
+        width: 100%;
+    }
+    .contain_halaman3{
+        display:flex;
+        flex-direction: column;
+    }
+    .conhal3_1 {order: 1;}
+    .conhal3_2 {order: 3;}
+    .conhal3_3 {order: 2;}
+    
+    .conhal3_1{
+        border-left: solid 1px #E7F0F2;
+        height: 50px;
+        /* border: solid 1px black; */
+        /* box-sizing: border-box; */
+        margin-top: 50px;
+    }
+    .conhal3_1-1 p{
+        display: inline;
+    }
+    .conhal3_1 p{
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 20px;
+        width: 100px;
+        margin-top: 0;
+        margin-left: 10px;
+    }
+    .conhal3_1 span{
+        font-weight: 900;
+
+    }
+    .conhal3_3{
+        border-right: solid 1px #E7F0F2;
+        height: 50px;
+        /* border: solid 1px black; */
+        /* box-sizing: border-box; */
+        /* width: 100px; */
+    }
+    .conhal3_3-1 p{
+        display: inline;
+    }
+    .conhal3_3 p{
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 20px;
+        width: 100px;
+        text-align: right;
+        margin-top: 0;
+        margin-right: 10px;
+    }
+    .conhal3_3 span{
+        font-weight: 900;
+    }
+    .nav1{
+        margin-left: -20%;
+    }
+}

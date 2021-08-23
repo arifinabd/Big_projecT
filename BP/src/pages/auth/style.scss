@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.tab {
+  display: flex;
+  justify-content: space-around;
+  background-color: black;
+  color: white;
+}
+
+.tab-item {
+  padding: 25px;
+}

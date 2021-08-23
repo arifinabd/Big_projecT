@@ -1,0 +1,23 @@
+.layout{
+  display: flex;
+  background-color: #f3f3f3;
+}
+ul {
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  display: flex;
+  color: black;
+  text-decoration: none;
+  padding-right: 10px;
+  padding-top: 5px;
+}
+.layout ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+
