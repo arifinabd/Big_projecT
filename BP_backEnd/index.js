@@ -2,15 +2,20 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const port = 8000
-const { sequelize } = require('./src/models')
 
-app.use(express.urlencoded({extended: true}))
+const { sequelize } = require('./models')
+
+const authRouter = require('./routes/auth')
+
+app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 app.use(cors())
 
 sequelize.authenticate().then(() => {
   console.log(`Success connecting database`)                   
 })
+
+app.use('/auth', authRouter)
 
 app.use((error, req, res, next) => {                         
   return res.status(400).json({
