@@ -1,23 +1,23 @@
 const { Model, DataTypes } = require('sequelize')      
-const connection = require('../database/connection')
+const connection = require('../connection')
 
-class Cart extends Model {}
+class Payment extends Model {}
 
-Cart.init({
+Payment.init({
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true
   },
-  quantity: {
-    type: DataTypes.INTEGER,
+  total_price: {
+    type: DataTypes.BIGINT,
     allowNull: false
   }
 }, {
-  modelName: 'Cart',
+  modelName: 'Payment',
   sequelize: connection,
   paranoid: false,
   timestamps: false
 })
 
-module.exports = Cart
+module.exports = Payment

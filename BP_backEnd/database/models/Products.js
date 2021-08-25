@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize')      
-const connection = require('../database/connection')
+const connection = require('../connection')
 
-class User extends Model {}
+class Product extends Model {}
 
-User.init({
+Product.init({
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -13,19 +13,30 @@ User.init({
     type: DataTypes.STRING(50),
     allowNull: false
   },
-  username: {
+  image: {
     type: DataTypes.STRING(50),
     allowNull: false
   },
-  password: {
-    type: DataTypes.STRING,
+  stock: {
+    type: DataTypes.INTEGER,
     allowNull: false
+  },
+  real_stock: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  price: {
+    type: DataTypes.BIGINT,
+    allowNull: false
+  },
+  description: {
+    type: DataTypes.STRING,
   }
 }, {
-  modelName: 'Users',
+  modelName: 'Products',
   sequelize: connection,
   paranoid: false,
   timestamps: false
 })
 
-module.exports = User
+module.exports = Product

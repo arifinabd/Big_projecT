@@ -3,7 +3,7 @@ const cors = require('cors')
 const app = express()
 const port = 8000
 
-const { sequelize } = require('./models')
+const { sequelize } = require('./database/models')
 
 const authRouter = require('./routes/auth')
 

@@ -31,7 +31,7 @@ const Layout = ({ children, history }) => {
                     <NavLink to='/auth'>Login | signup</NavLink>
                     )}
             </li>
-            <li>{dataLogin && (<span>Hallo {dataLogin.name}</span>)}</li>
+            <li>{dataLogin && (<span>| Hallo {dataLogin.name}</span>)}</li>
         </ul>
       </div>
       <div>

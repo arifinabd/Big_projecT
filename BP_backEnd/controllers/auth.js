@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { User } = require("../models/Users");
+const { User } = require("../database/models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -8,12 +8,10 @@ const { SECRET_TOKEN } = process.env;
 
 exports.register = async (req, res, next) => {
   try {
-    const { username, password } = req.body;
+    const { name, username, password } = req.body;
 
     const user = await User.findOne({
-      where: {
-        username,
-      },
+      where: {username, name},
     });
 
     if (user) {
@@ -25,6 +23,7 @@ exports.register = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 12);
 
     await User.create({
+      name,
       username,
       password: hashedPassword,
     });

@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize')      
-const connection = require('../database/connection')
+const connection = require('../connection')
 
 class Checkout extends Model {}
 
