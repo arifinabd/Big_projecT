@@ -1,21 +1,12 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable(
-      'Checkout',
+      'Carts',
       {
         id: {
           type: Sequelize.UUID,
           default: Sequelize.UUIDV4,
           primaryKey: true
-        },
-        payment_id: {
-          type: Sequelize.UUID,
-          references: {
-            model: 'Payment',
-            key: 'id'
-          },
-          onDelete: 'CASCADE',
-          onUpdate: 'CASCADE'
         },
         user_id: {
           type: Sequelize.UUID,
@@ -34,12 +25,15 @@ module.exports = {
           },
           onDelete: 'CASCADE',
           onUpdate: 'CASCADE'
+        },
+        quantity: {
+          type: Sequelize.INTEGER,
+          allowNull: false
         }
       }
     )
   },
-
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Checkout')
+    return queryInterface.dropTable('Carts')
   }
 };

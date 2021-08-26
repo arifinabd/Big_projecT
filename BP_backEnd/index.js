@@ -6,6 +6,9 @@ const port = 8000
 const { sequelize } = require('./database/models')
 
 const authRouter = require('./routes/auth')
+const productRouter = require('./routes/products')
+const cartRouter = require('./routes/cart')
+const checkoutRouter = require('./routes/checkout')
 
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
@@ -16,6 +19,9 @@ sequelize.authenticate().then(() => {
 })
 
 app.use('/auth', authRouter)
+app.use('/product', productRouter)
+app.use('/cart', cartRouter)
+app.use('/checkout', checkoutRouter)
 
 app.use((error, req, res, next) => {                         
   return res.status(400).json({

@@ -14,7 +14,7 @@ Payment.init({
     allowNull: false
   }
 }, {
-  modelName: 'Payment',
+  modelName: 'Payments',
   sequelize: connection,
   paranoid: false,
   timestamps: false

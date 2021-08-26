@@ -2,7 +2,7 @@ const uuid = require('uuid')
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Payment', [
+    return queryInterface.bulkInsert('Payments', [
       {
         id: uuid.v4(),
         total_price: 200000
@@ -11,6 +11,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Payment', null)  
+    return queryInterface.bulkDelete('Payments', null)  
   }
 };
