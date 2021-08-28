@@ -47,11 +47,11 @@ exports.getCart = async (req, res, next) => {
 
 exports.updateQty = async (req, res, next) => {
   try {
-    const { product_id, quantity } = req.body
+    const { quantity } = req.body
     Cart.update({
-      product_id, quantity
+     quantity
     }, {
-      where: {user_id: req.params.id}
+      where: {id: req.params.id}
     })
 
     return res.status(201).json({
@@ -66,11 +66,8 @@ exports.updateQty = async (req, res, next) => {
 
 exports.delCart = async (req, res, next) => {
   try {
-    const { product_id } = req.body
     Cart.destroy({
-      product_id,
-    }, {
-      where: {user_id: req.params.id}
+      where: {id: req.params.id}
     })
 
     return res.status(201).json({

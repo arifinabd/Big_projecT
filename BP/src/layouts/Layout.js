@@ -1,9 +1,11 @@
+import axios from 'axios';
 import React from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
 import './layout.scss'
+
 
 const Layout = ({ children, history }) => {
   const menuData = [
@@ -12,10 +14,11 @@ const Layout = ({ children, history }) => {
     {to: '/cart', menuName: 'Cart', exact: false},
     // {to: '/auth', menuName: 'Login | Signup', exact: false},
   ]
-  const dataLogin = window.localStorage.getItem('dataLogin') && JSON.parse(window.localStorage.getItem('dataLogin'))
-  console.log(history)
+  const dataLogin = JSON.parse(localStorage.getItem('dataLogin'))
+  // const dataLogin = window.localStorage.getItem('dataLogin') && JSON.parse(window.localStorage.getItem('dataLogin'))
+  // console.log(history)
   const handleLogout = () => {
-      window.localStorage.removeItem('dataLogin')
+      localStorage.removeItem('dataLogin')
       alert('LOGOUT BERHASIL')
       history.push('/')
   }

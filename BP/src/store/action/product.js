@@ -1,6 +1,17 @@
 import { GET_PRODUCTS, ADD_TO_CART, GET_CARTS, DELETE_CART, ADD_QTY, REMOVE_QTY} from "../constants";
+// import axios from "axios";
 
-export const getProducts = () => {
+// const BACKEND_URL = 'http://localhost:8000'
+
+export const getProducts = (product) => {
+//   const request = axios.get(`${BACKEND_URL}/${product}`)
+//   return (dispatch) => {
+//       request.then(response => dispatch({
+//           type: GET_PRODUCTS,
+//           payload: response.data.data
+//       }))
+//   }
+// }    
   return {
     type: GET_PRODUCTS, 
     payload: [

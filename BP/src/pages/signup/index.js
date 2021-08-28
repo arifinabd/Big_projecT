@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, {useState} from 'react'
 
 const Signup = () => {
@@ -12,17 +13,33 @@ const Signup = () => {
       ...form, [e.target.name] : e.target.value
     })
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const users = window.localStorage.getItem('users') ? JSON.parse(window.localStorage.getItem('users')) : []
-    users.push(form)
-    window.localStorage.setItem('users', JSON.stringify(users))
-    setForm({
-      name: '',
-      username: '',
-      password: '',
-      confirm: ''
-    })
+    try {
+      const res = await axios.post(
+        'http://localhost:8000/auth/register/', form
+      )
+      if (res.data.code === 201) {
+        alert('regist success')
+      } else {
+        alert('error register')
+      }
+    } catch (error) {
+      if (error.response && error.response.data){
+        alert(error.response.data)
+      } else {
+        alert(error.message)
+      }
+    }
+    // const users = window.localStorage.getItem('users') ? JSON.parse(window.localStorage.getItem('users')) : []
+    // users.push(form)
+    // window.localStorage.setItem('users', JSON.stringify(users))
+    // setForm({
+    //   name: '',
+    //   username: '',
+    //   password: '',
+    //   confirm: ''
+    // })
   }
   return (
     <div>

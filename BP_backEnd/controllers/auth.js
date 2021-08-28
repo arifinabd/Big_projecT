@@ -68,6 +68,8 @@ exports.login = async (req, res, next) => {
       message: "Success Login.",
       data: {
         access_token: accessToken,
+        name: user.name,
+        username: user.username
       },
     });
   } catch (error){

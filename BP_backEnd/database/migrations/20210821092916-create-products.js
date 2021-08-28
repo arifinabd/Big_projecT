@@ -8,7 +8,15 @@ module.exports = {
           default: Sequelize.UUIDV4,
           primaryKey: true
         },
+        type: {
+          type: Sequelize.STRING(50),
+          allowNull: false
+        },
         name: {
+          type: Sequelize.STRING(50),
+          allowNull: false
+        },
+        caption: {
           type: Sequelize.STRING(50),
           allowNull: false
         },
@@ -25,6 +33,10 @@ module.exports = {
           allowNull: false
         },
         price: {
+          type: Sequelize.BIGINT,
+          allowNull: false
+        },
+        price_disc: {
           type: Sequelize.BIGINT,
           allowNull: false
         },
