@@ -7,6 +7,7 @@ const authorization = async (req, res, next) => {
   try {
     const token = req.header('Authorization').replace('Bearer ', '')
     const decoded = jwt.verify(token, SECRET_TOKEN)
+    // console.log(decode)
     const user = await Admin.findOne({
       where: {
         id: decoded.adminId

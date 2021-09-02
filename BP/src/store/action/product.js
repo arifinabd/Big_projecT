@@ -20,19 +20,9 @@ export const getProducts = () => {
     }
 }  
 
-export const createProduct = () => {
+export const createProduct = (data) => {
     return (dispatch) => {
-        const request = axios.post(`${BACKEND_URL}/product`, {
-            type: "",
-            name: "",
-            caption: "",
-            image: "",
-            stock: 0,
-            real_stock: 0,
-            price: 0,
-            price_disc: 0,
-            description: ""    
-        }, {
+        const request = axios.post(`${BACKEND_URL}/product`, data , {
             headers: {
                 'Authorization' : `Bearer ${ADMIN_DATA && ADMIN_DATA.access_token}`
             }
@@ -46,25 +36,19 @@ export const createProduct = () => {
     }
 }
 
-export const uploadProduct = (e) => {
-    const formUpload = new FormData()
-    const imageFile = e.target.file[0]
-    formUpload.append('image', imageFile)
+export const uploadProduct = async (formUpload) => {
     
-    return (dispatch) => {
-        const request = axios.post(`${BACKEND_URL}/upload`, formUpload, {
+    // console.log(e.target)
+   console.log(ADMIN_DATA)
+        const request = await axios.post(`${BACKEND_URL}/upload`, formUpload, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization' : `Bearer ${ADMIN_DATA && ADMIN_DATA.access_token}`
             }
         })
-        request.then(response => {
-            dispatch({
-                type: UPLOAD_PRODUCTS,
-                payload: response.data.data
-            })
-        })
-    }
+        
+            return request.data.data
+    
 }
 
 export const addToCart = (id) => {

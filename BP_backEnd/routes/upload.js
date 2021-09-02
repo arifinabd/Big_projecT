@@ -2,8 +2,8 @@ const { Router } = require('express')
 const router = Router()
 
 const { upload } = require('../controllers/upload')
-const authorization = require('../middleware/authorization')
+const authorizationAdmin = require('../middleware/authorization_admin')
 
-router.post('/', authorization, upload)
+router.post('/', authorizationAdmin, upload)
 
 module.exports = router
