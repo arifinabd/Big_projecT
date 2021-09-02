@@ -13,7 +13,6 @@ const checkoutRouter = require('./routes/checkout')
 const adminRouter = require('./routes/admin')
 const uploadRouter = require('./routes/upload')
 
-
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
