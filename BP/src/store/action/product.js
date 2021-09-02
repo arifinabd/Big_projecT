@@ -1,164 +1,153 @@
-import { GET_PRODUCTS, ADD_TO_CART, GET_CARTS, DELETE_CART, ADD_QTY, REMOVE_QTY} from "../constants";
-// import axios from "axios";
+import { GET_PRODUCTS, ADD_TO_CART, GET_CARTS, DELETE_CART, ADD_QTY, REMOVE_QTY , BACKEND_URL, CREATE_PRODUCTS, UPLOAD_PRODUCTS} from "../constants";
 
-// const BACKEND_URL = 'http://localhost:8000'
+import axios from "axios";
 
-export const getProducts = (product) => {
-//   const request = axios.get(`${BACKEND_URL}/${product}`)
-//   return (dispatch) => {
-//       request.then(response => dispatch({
-//           type: GET_PRODUCTS,
-//           payload: response.data.data
-//       }))
-//   }
-// }    
-  return {
-    type: GET_PRODUCTS, 
-    payload: [
-        {
-            id: 1,
-            type: 'Red Marron',
-            name: 'Nice SHIRT',
-            caption: 'Kacamata tampan dan Berani',
-            image: '/assets/img/orang.jpg',
-            priceDisc: 11.99,
-            priceReal: 39.99,
-            stock: 7,
-            stock_real: 7,
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    
-        },
-        {
-            id: 2,
-            type: 'Red Marron',
-            name: 'Nice SHIRT',
-            caption: 'Kacamata tampan dan Berani',
-            image: '/assets/img/orang.jpg',
-            priceDisc: 12.99,
-            priceReal: 39.99,
-            stock: 7,
-            stock_real: 7,
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    
-        },
-        {
-            id: 3,
-            type: 'Red Marron',
-            name: 'Nice SHIRT',
-            caption: 'Kacamata tampan dan Berani',
-            image: '/assets/img/orang.jpg',
-            priceDisc: 13.99,
-            priceReal: 39.99,
-            stock: 7,
-            stock_real: 7,
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    
-        },
-        {
-            id: 4,
-            type: 'Red Marron',
-            name: 'Nice SHIRT',
-            caption: 'Kacamata tampan dan Berani',
-            image: '/assets/img/orang.jpg',
-            priceDisc: 14.99,
-            priceReal: 39.99,
-            stock: 7,
-            stock_real: 7,
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    
-        },
-        {
-            id: 5,
-            type: 'Red Marron',
-            name: 'Nice SHIRT',
-            caption: 'Kacamata tampan dan Berani',
-            image: '/assets/img/orang.jpg',
-            priceDisc: 15.99,
-            priceReal: 39.99,
-            stock: 7,
-            stock_real: 7,
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    
-        },
-        {
-            id: 6,
-            type: 'Red Marron',
-            name: 'Nice SHIRT',
-            caption: 'Kacamata tampan dan Berani',
-            image: '/assets/img/orang.jpg',
-            priceDisc: 16.99,
-            priceReal: 39.99,
-            stock: 7,
-            stock_real: 7,
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    
-        },
-        {
-            id: 7,
-            type: 'Red Marron',
-            name: 'Nice SHIRT',
-            caption: 'Kacamata tampan dan Berani',
-            image: '/assets/img/orang.jpg',
-            priceDisc: 17.99,
-            priceReal: 39.99,
-            stock: 7,
-            stock_real: 7,
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    
-        },
-        {
-            id: 8,
-            type: 'Red Marron',
-            name: 'Nice SHIRT',
-            caption: 'Kacamata tampan dan Berani',
-            image: '/assets/img/orang.jpg',
-            priceDisc: 18.99,
-            priceReal: 39.99,
-            stock: 7,
-            stock_real: 7,
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    
-        },
-        {
-            id: 9,
-            type: 'Red Marron',
-            name: 'Nice SHIRT',
-            caption: 'Kacamata tampan dan Berani',
-            image: '/assets/img/orang.jpg',
-            priceDisc: 19.99,
-            priceReal: 39.99,
-            stock: 7,
-            stock_real: 7,
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    
-        },
-    ]
-  };
-};
+const USER_DATA = JSON.parse(localStorage.getItem('dataLogin'))
+const ADMIN_DATA = JSON.parse(localStorage.getItem('dataAdmin')) 
 
-export const addToCart = (id) => {
-    return {
-      type: ADD_TO_CART,
-      payload: id
-  }
+
+export const getProducts = () => {
+    return (dispatch) => {
+    const request = axios.get(`${BACKEND_URL}/product`, {
+        headers: {
+            'Authorization' : `Bearer ${USER_DATA && USER_DATA.access_token}`
+        }
+    })
+        request.then(response => dispatch({
+            type: GET_PRODUCTS,
+            payload: response.data.data
+            }))
+    }
+}  
+
+export const createProduct = () => {
+    return (dispatch) => {
+        const request = axios.post(`${BACKEND_URL}/product`, {
+            type: "",
+            name: "",
+            caption: "",
+            image: "",
+            stock: 0,
+            real_stock: 0,
+            price: 0,
+            price_disc: 0,
+            description: ""    
+        }, {
+            headers: {
+                'Authorization' : `Bearer ${ADMIN_DATA && ADMIN_DATA.access_token}`
+            }
+        })
+        request.then(response => {
+            dispatch({
+                type: CREATE_PRODUCTS,
+                payload: response.data.data
+            })
+        })
+    }
 }
 
-export const getCarts = () => {
-    return{
-        type: GET_CARTS,
+export const uploadProduct = (e) => {
+    const formUpload = new FormData()
+    const imageFile = e.target.file[0]
+    formUpload.append('image', imageFile)
+    
+    return (dispatch) => {
+        const request = axios.post(`${BACKEND_URL}/upload`, formUpload, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization' : `Bearer ${ADMIN_DATA && ADMIN_DATA.access_token}`
+            }
+        })
+        request.then(response => {
+            dispatch({
+                type: UPLOAD_PRODUCTS,
+                payload: response.data.data
+            })
+        })
+    }
+}
+
+export const addToCart = (id) => {
+    // ini mesti di ubah jadi jangan id aja tpi data post
+    return (dispatch) => {
+        const request = axios.post(`${BACKEND_URL}/cart`, {
+            quantity: 1,
+            product_id: id,
+            user_id: USER_DATA && USER_DATA.user_id
+        }, {
+            headers: {
+                'Authorization' : `Bearer ${USER_DATA && USER_DATA.access_token}`
+            }
+        })
+        request.then(response => {
+            dispatch({
+                type: ADD_TO_CART,
+                payload: response.data.data
+            })
+            dispatch(getCarts(USER_DATA.user_id))
+            })
+    }
+//     return {
+//       type: ADD_TO_CART,
+//       payload: id
+//   }
+}
+
+export const getCarts = (id) => {
+    return (dispatch) => {
+        const request = axios.get(`${BACKEND_URL}/cart/${id}`, {
+            headers: {
+                'Authorization' : `Bearer ${USER_DATA && USER_DATA.access_token}`
+            }
+        })
+            request.then(response => dispatch({
+                type: GET_CARTS,
+                payload: response.data.data
+                }))
+        // return{
+        //     type: GET_CARTS,
+        // }
     }
 }
 
 export const deleteCart = (index) => {
-    return{
-        type: DELETE_CART,
-        payload:index
+    return (dispatch) => {
+        const request = axios.delete(`${BACKEND_URL}/cart/${index}`, {
+            headers: {
+                'Authorization' : `Bearer ${USER_DATA && USER_DATA.access_token}`
+            }
+        })
+        request.then(response => {
+                dispatch({
+                    type: DELETE_CART,
+                    payload: response.data.data
+                })
+                dispatch(getCarts(USER_DATA.user_id))
+            })
     }
+    // return{
+    //     type: DELETE_CART,
+    //     payload:index
+    // }
 }
 
 export const adjustQty = (data) => {
-    return {
-      type: ADD_QTY,
-      payload: data
-  }
+    return (dispatch) => {
+        const request = axios.patch(`${BACKEND_URL}/cart/update/${data}`, {
+            headers: {
+                'Authorization' : `Bearer ${USER_DATA && USER_DATA.access_token}`
+            }
+        })
+        request.then(response => {
+                dispatch({
+                    type: ADD_QTY,
+                    payload: response.data.data
+                })
+                dispatch(getCarts(USER_DATA.user_id))
+            })
+    }
+//     return {
+//       type: ADD_QTY,
+//       payload: data
+//   }
 }

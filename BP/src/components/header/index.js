@@ -18,6 +18,7 @@ function Header(props) {
         props.history.push("/list-shop")
     }
 
+        console.log(props, 'ea')
 
     return (
         <div className="container">
@@ -35,7 +36,7 @@ function Header(props) {
                         <div className="shopping">
                             <a onClick={() => handleClickCart()}>
                                 <ShoppingCart/> | 
-                                <span>{props.carts.length}</span>
+                                <span>{props.carts && props.carts.length}</span>
                             </a>
                         </div>
                         </div>
@@ -61,5 +62,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))
+export default withRouter(connect(mapStateToProps, null)(Header))
 // export default withRouter(Header)

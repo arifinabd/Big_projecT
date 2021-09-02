@@ -1,21 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import { connect } from 'react-redux'
-// import { useEffect } from 'react'
+
 import "./style.scss"
-// import { getProducts } from '../../store/action/product'
-// import { addToCart } from '../../store/action/product'
+
 
 const CardProduct = (props) => {
-    // useEffect(() => {
-    //     props.getProducts()
-    // }, [])
-    // console.log(props)
-
-    // const handleAddToCart = (id) => {
-    //     props.addToCart(id)
-    //     alert('add to cart')
-    // }
 
     return (
         <div className="cardproduct">
@@ -31,8 +20,8 @@ const CardProduct = (props) => {
                 </Link>               
             </div>
             <div>
-                <div className="h3">${props.product.priceDisc}</div>
-                <div className="h5" style={{textDecoration: 'line-through'}}>${props.product.priceReal}</div>
+                <div className="h3">${props.product.price_disc}</div>
+                <div className="h5" style={{textDecoration: 'line-through'}}>${props.product.price}</div>
                 <div className="h5">Stock : {props.product.stock}</div>
             </div>
         </div>

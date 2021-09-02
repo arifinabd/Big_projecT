@@ -13,6 +13,8 @@ import { getProducts, addToCart } from '../../store/action/product'
 
 const ProductPage = (props) => {
     useEffect(() => {
+        console.log('render')
+        // e.preventDefault()
         props.getProducts()
     },[])
 
@@ -49,8 +51,8 @@ const ProductPage = (props) => {
                     </div>                 
                     </div>
                     <div className="harga_product"> 
-                        <div className="harga_product1">${product && product.priceDisc}</div>
-                        <div className="harga_product2">${product && product.priceReal}</div>
+                        <div className="harga_product1">${product && product.price_disc}</div>
+                        <div className="harga_product2">${product && product.price}</div>
                     </div>
                     <div className="caption_product">
                         <div className="caption_product1">{product && product.caption}</div>

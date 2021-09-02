@@ -18,11 +18,11 @@ Product.init({
     allowNull: false
   },
   caption: {
-    type: DataTypes.STRING(50),
+    type: DataTypes.STRING,
     allowNull: false
   },
   image: {
-    type: DataTypes.STRING(50),
+    type: DataTypes.STRING,
     allowNull: false
   },
   stock: {

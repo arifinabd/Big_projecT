@@ -14,6 +14,7 @@ function CardShop(props) {
     console.log(props)
 
     const handleAddToCart = (id) => {
+        // id.preventDefault()
         props.addToCart(id)
         alert('add to cart')
         props.history.push('/list-shop')

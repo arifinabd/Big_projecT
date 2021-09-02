@@ -4,6 +4,7 @@ const Product = require('./Products')
 const Payment = require('./Payment')
 const Cart = require('./Cart')
 const Checkout = require('./Checkout')
+const Admin = require('./Admin')
 
 User.hasMany(Cart, {
   as: 'Carts',
@@ -86,5 +87,6 @@ module.exports = {
   Product,
   Payment,
   Cart,
-  Checkout
+  Checkout,
+  Admin
 }

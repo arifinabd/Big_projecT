@@ -15,8 +15,6 @@ const Layout = ({ children, history }) => {
     // {to: '/auth', menuName: 'Login | Signup', exact: false},
   ]
   const dataLogin = JSON.parse(localStorage.getItem('dataLogin'))
-  // const dataLogin = window.localStorage.getItem('dataLogin') && JSON.parse(window.localStorage.getItem('dataLogin'))
-  // console.log(history)
   const handleLogout = () => {
       localStorage.removeItem('dataLogin')
       alert('LOGOUT BERHASIL')

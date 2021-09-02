@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, ADD_TO_CART, GET_CARTS, DELETE_CART, ADD_QTY } from "../constants";
+import { GET_PRODUCTS, ADD_TO_CART, GET_CARTS, DELETE_CART, ADD_QTY, CREATE_PRODUCTS } from "../constants";
 
 const initialState = {
   carts: [],
@@ -9,9 +9,10 @@ const initialState = {
     name: '',
     caption: '',
     image: '',
-    priceDisc: 0,
-    priceReal: 0,
-    quantity: 0,
+    stock: '',
+    real_stock: '',
+    price: 0,
+    price_disc: 0,
     description: '',
   }
 };
@@ -25,6 +26,12 @@ const productReducer = (state = initialState, { type, payload }) => {
         ...state,
         products: payload,
       };
+    
+    case CREATE_PRODUCTS:
+      return {
+        ...state,
+        product: payload,
+      };
 
     case ADD_TO_CART:
       const findProduct = state.products.find((val) => val.id === payload)
@@ -35,7 +42,10 @@ const productReducer = (state = initialState, { type, payload }) => {
       }
 
     case GET_CARTS:
-      return state
+      return {
+        ...state,
+        carts: payload,
+      }
 
     case DELETE_CART:
       const deleteProduct = [...state.carts];
@@ -49,8 +59,8 @@ const productReducer = (state = initialState, { type, payload }) => {
 
     case ADD_QTY:
       const getProductById = state.products.find((val) => val.id === payload.id)
-      getProductById.qty = payload.qty
-      getProductById.stock = getProductById.stock_real - payload.qty;
+      getProductById.quantity = payload.quantity
+      getProductById.stock = getProductById.real_stock - payload.quantity;
       return{
         ...state,
         carts: carts,

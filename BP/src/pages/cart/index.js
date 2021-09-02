@@ -4,16 +4,20 @@ import { connect } from 'react-redux'
 import './style.scss'
 import Header from '../../components/header'
 import Layout from '../../layouts/Layout'
-import { deleteCart, adjustQty } from '../../store/action/product'
- 
+import { deleteCart, adjustQty, getCarts, getProducts } from '../../store/action/product'
+import { USER_DATA } from '../../store/constants' 
+
  const Cart = (props) => {
      console.log(props)
-     const [render, setRender] = useState(false)
+     const [render, setRender] = useState(true)
 
      useEffect(() => {
          console.log(render);
-         setRender(false)
+        //  setRender(false)
+         props.getProducts(setRender(true))
+         props.getCarts(USER_DATA.user_id)
      },[render])
+
 
      const handleCancel = (id) => {
         props.deleteCart(id)
@@ -21,11 +25,11 @@ import { deleteCart, adjustQty } from '../../store/action/product'
      const handleOnChange = () => {}
 
      const handleAddQty = (id, qty) => {
-        const data = {
-            id: id,
-            qty: qty + 1,
-        };
-        props.adjustQty(data);
+        // const data = {
+        //     id: id,
+        //     qty: qty + 1,
+        // };
+        props.adjustQty(id, qty);
         console.log(props);
         setRender(true);
         alert('berhasil nambah');
@@ -38,7 +42,7 @@ import { deleteCart, adjustQty } from '../../store/action/product'
 
              <h1>CART LIST</h1>
              <div className="cartsummary">
-                {props.carts.length < 1 ? (
+                {props.carts && props.carts.length < 1 ? (
                     <h2>Cart Is Empty!</h2>
                     ): (
                         <table width="80%">
@@ -54,7 +58,7 @@ import { deleteCart, adjustQty } from '../../store/action/product'
                         </thead>
                         <tbody>
                             {props.carts && props.carts.map((val, key) => {
-                                const subtotal = val.qty * val.priceDisc
+                                const subtotal = val.quantity * val.price_disc
                                 return(
                                     <tr key={key}>
                                         <td>{key + 1}</td>
@@ -71,9 +75,9 @@ import { deleteCart, adjustQty } from '../../store/action/product'
                                                 size='sm' 
                                                 style={{fontWeight:'bold'}}> + </button>
                                         </td>
-                                        <td>${val.priceDisc}</td>
+                                        <td>${val.price_disc}</td>
                                         <td>${subtotal}</td>
-                                        <td><button onClick={() => {handleCancel(props.id)}}>X</button></td>
+                                        <td><button onClick={() => {handleCancel(val.id)}}>X</button></td>
                                     </tr>
                                 )
                             })}
@@ -91,11 +95,14 @@ import { deleteCart, adjustQty } from '../../store/action/product'
  } 
  const mapStateToProps = (state) => {
      return{
-         carts: state.productReducer.carts
+        products: state.productReducer.products,
+        carts: state.productReducer.carts
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return{
+        getProducts: () => dispatch(getProducts()),
+        getCarts: (id) => dispatch(getCarts(id)),
         deleteCart: (id) => dispatch(deleteCart(id)),
         adjustQty: (data) => dispatch(adjustQty(data)),
     }

@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { User } = require("../database/models");
+const { Admin } = require("../database/models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -10,19 +10,19 @@ exports.register = async (req, res, next) => {
   try {
     const { name, username, password } = req.body;
 
-    const user = await User.findOne({
+    const admin = await Admin.findOne({
       where: {username, name},
     });
 
-    if (user) {
+    if (admin) {
       throw new Error(
-        "User with this username already exist. Please use other username."
+        "Admin with this username already exist. Please use other username."
       );
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    await User.create({
+    await Admin.create({
       name,
       username,
       password: hashedPassword,
@@ -31,7 +31,7 @@ exports.register = async (req, res, next) => {
     return res.status(201).json({
       status: "Success",
       code: 201,
-      message: "Success Register User."
+      message: "Success Register Admin."
     });
   } catch (error) {
     return next(error)
@@ -42,23 +42,23 @@ exports.login = async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
-    const user = await User.findOne({
+    const admin = await Admin.findOne({
       where: {
         username,
       },
     })
 
-    if (!user) {
-      throw new Error("User with this username not found.");
+    if (!admin) {
+      throw new Error("Admin with this username not found.");
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, admin.password);
 
     if (!isMatch) {
       throw new Error("Password not valid.")
     }
 
-    const accessToken = jwt.sign({ userId: user.id }, SECRET_TOKEN, {
+    const accessToken = jwt.sign({ adminId: admin.id }, SECRET_TOKEN, {
       expiresIn: "1h",
     });
     
@@ -68,9 +68,9 @@ exports.login = async (req, res, next) => {
       message: "Success Login.",
       data: {
         access_token: accessToken,
-        name: user.name,
-        username: user.username,
-        user_id: user.id
+        name: admin.name,
+        username: admin.username,
+        // user_id: user.id
       },
     });
   } catch (error){

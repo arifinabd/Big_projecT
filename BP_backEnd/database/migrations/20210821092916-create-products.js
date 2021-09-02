@@ -17,11 +17,11 @@ module.exports = {
           allowNull: false
         },
         caption: {
-          type: Sequelize.STRING(50),
+          type: Sequelize.STRING,
           allowNull: false
         },
         image: {
-          type: Sequelize.STRING(50),
+          type: Sequelize.STRING,
           allowNull: false
         },
         stock: {
