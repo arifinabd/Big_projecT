@@ -42,41 +42,50 @@ const AdminProduct = (props) => {
       ...product,
       image: imageResponse
     })
-    // console.log(imageResponse)
   }
 
   return (
     <LayoutAdmin>
       <h1>Admin Product</h1>
       <form onSubmit={(e) => handleSetProduct(e)}>
-        <label htmlFor=''>Upload Product</label>
+        <label htmlFor='' style={{fontWeight:'bold'}}>Upload Product</label>
           <div>
-            <input type="text" placeholder="type..." name="type" value={product.type} onChange={(e) => handleFromChange(e)}/> Type
+            <label htmlFor=''>Type</label><br/>
+            <input type="text" placeholder="type..." name="type" value={product.type} onChange={(e) => handleFromChange(e)}/>
           </div>
           <div>
-            <input type="text" placeholder="name..." name="name" value={product.name} onChange={(e) => handleFromChange(e)}/> Name
+            <label htmlFor=''>Name</label><br/>
+            <input type="text" placeholder="name..." name="name" value={product.name} onChange={(e) => handleFromChange(e)}/>
           </div>
           <div>
-            <input type="text" placeholder="caption..." name="caption" value={product.caption} onChange={(e) => handleFromChange(e)}/> Caption
+            <label htmlFor=''>Caption</label><br/>
+            <input type="text" placeholder="caption..." name="caption" value={product.caption} onChange={(e) => handleFromChange(e)}/>
           </div>
           <div>
-            <input type="file" name="image" onChange={(e) => handleUpload(e)}/> Image
+            <label htmlFor=''>Image</label><br/>
+            <input type="file" name="image" onChange={(e) => handleUpload(e)}/>
           </div>
           <div>
-            <input type="number" placeholder="stock..." name="stock" value={product.stock} onChange={(e) => handleFromChange(e)} /> Stock
+            <label htmlFor=''>Stock</label><br/>
+            <input type="number" placeholder="stock..." name="stock" value={product.stock} onChange={(e) => handleFromChange(e)} />
           </div>
           <div>
-            <input type="" placeholder="stock real..." name="real_stock" value={product.real_stock} onChange={(e) => handleFromChange(e)}/> Stock Real
+            <label htmlFor=''>Stock real</label><br/>
+            <input type="" placeholder="stock real..." name="real_stock" value={product.real_stock} onChange={(e) => handleFromChange(e)}/>
           </div>
           <div>
-            <input type="number" placeholder="price..." name="price" value={product.price} onChange={(e) => handleFromChange(e)}/> Price
+            <label htmlFor=''>Price</label><br/>
+            <input type="number" placeholder="price..." name="price" value={product.price} onChange={(e) => handleFromChange(e)}/>
           </div>
           <div>
-            <input type="number" placeholder="disc price..." name="price_disc" value={product.price_disc} onChange={(e) => handleFromChange(e)}/> Discount Price
+            <label htmlFor=''>Discount price</label><br/>
+            <input type="number" placeholder="disc price..." name="price_disc" value={product.price_disc} onChange={(e) => handleFromChange(e)}/>
           </div>
           <div>
-            <input type="text" placeholder="description..." name="description" value={product.description} onChange={(e) => handleFromChange(e)}/> Description
+            <label htmlFor=''>Desription</label><br/>
+            <input type="text" placeholder="description..." name="description" value={product.description} onChange={(e) => handleFromChange(e)}/>
           </div>
+            <br/>
           <div>
           <button type='submit'>Create Product</button>
           </div>

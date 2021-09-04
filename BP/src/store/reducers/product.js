@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, ADD_TO_CART, GET_CARTS, DELETE_CART, ADD_QTY, CREATE_PRODUCTS } from "../constants";
+import { GET_PRODUCTS, ADD_TO_CART, GET_CARTS, DELETE_CART, ADD_QTY, CREATE_PRODUCTS, REMOVE_CART } from "../constants";
 
 const initialState = {
   carts: [],
@@ -65,6 +65,16 @@ const productReducer = (state = initialState, { type, payload }) => {
         ...state,
         carts: carts,
       }
+    
+    // case REMOVE_CART:
+    //   const checkout = carts.
+    //   if (deleteProduct[payload] !== -1){
+    //     deleteProduct.splice(payload, 1)
+    //   }
+    //   return{
+    //     ...state,
+    //     carts: deleteProduct
+    //   }
 
     default:
       return state;

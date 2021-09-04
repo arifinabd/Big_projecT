@@ -18,7 +18,6 @@ function Header(props) {
         props.history.push("/list-shop")
     }
 
-        console.log(props, 'ea')
 
     return (
         <div className="container">

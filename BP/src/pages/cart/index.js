@@ -4,17 +4,16 @@ import { connect } from 'react-redux'
 import './style.scss'
 import Header from '../../components/header'
 import Layout from '../../layouts/Layout'
-import { deleteCart, adjustQty, getCarts, getProducts } from '../../store/action/product'
+import { deleteCart, adjustQty, getCarts } from '../../store/action/product'
 import { USER_DATA } from '../../store/constants' 
 
  const Cart = (props) => {
-     console.log(props)
+    //  console.log(props)
      const [render, setRender] = useState(true)
 
      useEffect(() => {
-         console.log(render);
-        //  setRender(false)
-         props.getProducts(setRender(true))
+        //  console.log(render);
+         setRender(false)
          props.getCarts(USER_DATA.user_id)
      },[render])
 
@@ -25,16 +24,19 @@ import { USER_DATA } from '../../store/constants'
      const handleOnChange = () => {}
 
      const handleAddQty = (id, qty) => {
-        // const data = {
-        //     id: id,
-        //     qty: qty + 1,
-        // };
+        const data = {
+            id: id,
+            qty: qty + 1,
+        };
         props.adjustQty(id, qty);
-        console.log(props);
         setRender(true);
         alert('berhasil nambah');
      }
-     console.log(props)
+     const handleCheckout = () => {
+        
+     }
+
+
      return (
          <div>
             <Layout>
@@ -62,7 +64,7 @@ import { USER_DATA } from '../../store/constants'
                                 return(
                                     <tr key={key}>
                                         <td>{key + 1}</td>
-                                        <td>{val.name}</td>
+                                        <td>{val.Products.name}</td>
                                         <td>
                                             <button 
                                                 variant="outline-light" 
@@ -75,7 +77,7 @@ import { USER_DATA } from '../../store/constants'
                                                 size='sm' 
                                                 style={{fontWeight:'bold'}}> + </button>
                                         </td>
-                                        <td>${val.price_disc}</td>
+                                        <td>${val.Products.price_disc}</td>
                                         <td>${subtotal}</td>
                                         <td><button onClick={() => {handleCancel(val.id)}}>X</button></td>
                                     </tr>
@@ -95,13 +97,12 @@ import { USER_DATA } from '../../store/constants'
  } 
  const mapStateToProps = (state) => {
      return{
-        products: state.productReducer.products,
+        // products: state.productReducer.products,
         carts: state.productReducer.carts
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return{
-        getProducts: () => dispatch(getProducts()),
         getCarts: (id) => dispatch(getCarts(id)),
         deleteCart: (id) => dispatch(deleteCart(id)),
         adjustQty: (data) => dispatch(adjustQty(data)),

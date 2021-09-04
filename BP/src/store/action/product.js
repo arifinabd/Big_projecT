@@ -21,6 +21,7 @@ export const getProducts = () => {
 }  
 
 export const createProduct = (data) => {
+    console.log(ADMIN_DATA)
     return (dispatch) => {
         const request = axios.post(`${BACKEND_URL}/product`, data , {
             headers: {
