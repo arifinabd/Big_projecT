@@ -1,11 +1,12 @@
 const { Router } = require('express')
 const router = Router()
 
-const { addToCheckout, getCheckout } = require('../controllers/checkout')
+const { Checkout } = require('../controllers/checkout')
 const authorization = require('../middleware/authorization')
 
-router.post('/', authorization, addToCheckout)
-router.get('/:id', authorization, getCheckout)
+router.post('/:userId', authorization, Checkout)
+// router.get('/:id', authorization, getCheckout)
+// router.delete('/:id', authorization, Checkout)
 
 
 module.exports = router

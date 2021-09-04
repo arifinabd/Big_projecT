@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, ADD_TO_CART, GET_CARTS, DELETE_CART, ADD_QTY, REMOVE_QTY , BACKEND_URL, CREATE_PRODUCTS, UPLOAD_PRODUCTS} from "../constants";
+import { GET_PRODUCTS, ADD_TO_CART, GET_CARTS, DELETE_CART, ADD_QTY, BACKEND_URL, CREATE_PRODUCTS, CHECKOUT_CART} from "../constants";
 
 import axios from "axios";
 
@@ -72,10 +72,6 @@ export const addToCart = (id) => {
             dispatch(getCarts(USER_DATA.user_id))
             })
     }
-//     return {
-//       type: ADD_TO_CART,
-//       payload: id
-//   }
 }
 
 export const getCarts = (id) => {
@@ -89,9 +85,6 @@ export const getCarts = (id) => {
                 type: GET_CARTS,
                 payload: response.data.data
                 }))
-        // return{
-        //     type: GET_CARTS,
-        // }
     }
 }
 
@@ -110,10 +103,6 @@ export const deleteCart = (index) => {
                 dispatch(getCarts(USER_DATA.user_id))
             })
     }
-    // return{
-    //     type: DELETE_CART,
-    //     payload:index
-    // }
 }
 
 export const adjustQty = (data) => {
@@ -135,4 +124,29 @@ export const adjustQty = (data) => {
 //       type: ADD_QTY,
 //       payload: data
 //   }
+}
+
+// export const Checkout = (id) => {
+    
+//     const request = axios.delete(`${BACKEND_URL}/checkout/${id}`, {
+//         headers: {
+//             'Authorization' : `Bearer ${USER_DATA && USER_DATA.access_token}`
+//         }
+//     })
+//     return request.data.data
+
+// }
+
+export const checkoutShop = (id) => {
+    return (dispatch) => {
+        const request = axios.post(`${BACKEND_URL}/checkout/${id}`, {}, {
+            headers: {
+                'Authorization' : `Bearer ${USER_DATA && USER_DATA.access_token}`
+            }
+        })
+            request.then(response => dispatch({
+                type: CHECKOUT_CART,
+                payload: response.data.data
+                }))
+    }
 }

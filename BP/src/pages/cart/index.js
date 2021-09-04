@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import './style.scss'
 import Header from '../../components/header'
 import Layout from '../../layouts/Layout'
-import { deleteCart, adjustQty, getCarts } from '../../store/action/product'
+import { deleteCart, adjustQty, getCarts, checkoutShop } from '../../store/action/product'
 import { USER_DATA } from '../../store/constants' 
 
  const Cart = (props) => {
@@ -32,8 +32,9 @@ import { USER_DATA } from '../../store/constants'
         setRender(true);
         alert('berhasil nambah');
      }
+     
      const handleCheckout = () => {
-        
+        props.Checkout(USER_DATA.user_id)
      }
 
 
@@ -89,7 +90,7 @@ import { USER_DATA } from '../../store/constants'
             </div>
             <div>
                 <h2>Total : 200000</h2>
-            <button>Checkout</button>
+            <button onClick={(e) => {handleCheckout(e)}}>Checkout</button>
         </div>
         </Layout>
         </div>
@@ -103,6 +104,7 @@ import { USER_DATA } from '../../store/constants'
 }
 const mapDispatchToProps = (dispatch) => {
     return{
+        Checkout: (id) => dispatch(checkoutShop(id)),
         getCarts: (id) => dispatch(getCarts(id)),
         deleteCart: (id) => dispatch(deleteCart(id)),
         adjustQty: (data) => dispatch(adjustQty(data)),

@@ -14,7 +14,7 @@ export const DELETE_CART = '[CART] DELETE CART'
 export const ADD_QTY = '[CART] ADD QTY'
 export const REMOVE_QTY = '[CART] REMOVE QTY'
 
-export const REMOVE_CART = '[CART] REMOVE CART'
+export const CHECKOUT_CART = '[CART] CHECKOUT CART'
 
 export const USER_DATA = JSON.parse(localStorage.getItem('dataLogin')) 
 export const BACKEND_URL = 'http://localhost:8000'
