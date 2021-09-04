@@ -126,17 +126,6 @@ export const adjustQty = (data) => {
 //   }
 }
 
-// export const Checkout = (id) => {
-    
-//     const request = axios.delete(`${BACKEND_URL}/checkout/${id}`, {
-//         headers: {
-//             'Authorization' : `Bearer ${USER_DATA && USER_DATA.access_token}`
-//         }
-//     })
-//     return request.data.data
-
-// }
-
 export const checkoutShop = (id) => {
     return (dispatch) => {
         const request = axios.post(`${BACKEND_URL}/checkout/${id}`, {}, {
